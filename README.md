@@ -54,17 +54,17 @@ Step 1: Add a reference to the Suro.Net library to your web application
 
 Step 2: Add a configuration section to Web.config:
 
+    <configSections>
+        ...
+        <section name="suro" type="Suro.Net.Configuration.SuroConfigurationSection, Suro.Net"/>
+    </configSections>
+
+Step 3: Add the server configuration and configure accordingly:
+
     <appSettings>
         ...
     </appSettings>
     ...
-    <section name="suro" type="Suro.Net.Configuration.SuroConfigurationSection, Suro.Net"/>
-    ...
-    <system.web>
-        ...
-
-Step 3: Add the server configuration and configure accordingly:
-
     <suro host="localhost" port="7101" poolSize="5" compressionEnabled="false"/>
 
 Step 4: Add the HTTP Module configuration under system.web/httpModules:
