@@ -9,9 +9,15 @@ namespace Suro.Net.Client
 {
     public class SuroConnectionPool : ObjectPool<ISuroConnection>
     {
+
         public string AppName { get; private set; }
         public string Hostname { get; private set; }
         public int Port { get; private set; }
+
+        public SuroConnectionPool(string hostname, int port)
+            : this(Constants.DefaultApplicationName, hostname, port, Constants.DefaultPoolSize)
+        {
+        }
 
         public SuroConnectionPool(string appName, string hostname, int port, int poolSize)
             : base(

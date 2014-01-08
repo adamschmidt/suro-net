@@ -61,6 +61,7 @@
     <Compile Include="Client\Compression\LzfCompression.cs" />
     <Compile Include="Client\Compression\LzfCompressor.cs" />
     <Compile Include="Client\Compression\NoCompression.cs" />
+    <Compile Include="Client\Constants.cs" />
     <Compile Include="Client\ISuroConnection.cs" />
     <Compile Include="Client\Message\Crc32.cs" />
     <Compile Include="Client\Message\Message.cs" />

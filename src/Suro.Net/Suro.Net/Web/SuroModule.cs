@@ -33,14 +33,13 @@ namespace Suro.Net.Web
                 if (connectionPool == null)
                 {
                     var config = System.Configuration.ConfigurationManager.GetSection("suro") as SuroConfigurationSection;
+                    
+                    if (config == null)
+                        throw new SuroException("To use the Suro HTTP Module, a 'suro' configuration section must exist in Web/App.config");
 
-                    connectionPool = new SuroConnectionPool(
-                        config == null ? "ASP.NET Application" : config.ApplicationName,
-                        config == null ? "localhost" : config.Host,
-                        config == null ? 7101 : config.Port,
-                        config == null ? 5 : config.PoolSize);
+                    connectionPool = new SuroConnectionPool(config.ApplicationName, config.Host, config.Port, config.PoolSize);
 
-                    compressionEnabled = config != null && config.CompressionEnabled;
+                    compressionEnabled = config.CompressionEnabled;
                 }
             }
             

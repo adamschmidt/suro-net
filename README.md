@@ -2,6 +2,44 @@
 
 Netflix's Suro repository can be found here: https://github.com/netflix/suro
 
+## Client Usage
+
+Integration with Suro is through TCP Keel-Alive connections, meaning that the client library must make use of pooled connections.
+
+The simplest use case is as follows:
+
+    using (var connectionPool = new SuroConnectionPool(hostname, port))
+    using (var conn = connectionPool.Acquire())
+    {
+        try
+        {
+            conn.Connect();
+            ...
+            connection.Send(messageSet);
+        }
+        catch (SuroException)
+        {
+            ...
+        }
+    }
+
+## Building a MessageSet
+
+The simplest way to construct an instance of `TMessageSet` (as expected by the Suro service interface) without coding directly to the API is to use the `MessageSetBuilder` helper class.
+
+    var bob = new MessageSetBuilder()
+        .AddMessage(item.RoutingKey, item.Data);
+    ...
+    connection.Send(bob.Build());
+
+Messages can be compressed prior to sending with a call to `WithCompression(...)` during message set construction, as follows:
+
+    var bob = new MessageSetBuilder()
+        .WithCompression(CompressionType.Lzo)
+        .AddMessage(item.RoutingKey, item.Data);
+    ...
+    connection.Send(bob.Build());
+
 ## ASP.NET Integration
 
 The library includes an HTTP Module and Request Context utility class for hooking your ASP.NET web application up to the Suro service.

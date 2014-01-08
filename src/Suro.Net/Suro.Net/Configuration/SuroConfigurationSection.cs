@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Suro.Net.Client;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Suro.Net.Configuration
     public class SuroConfigurationSection : ConfigurationSection
     {
 
-        [ConfigurationProperty("applicationName", DefaultValue = "Suro .NET Application", IsRequired = false)]
+        [ConfigurationProperty("applicationName", DefaultValue = Constants.DefaultApplicationName, IsRequired = false)]
         public string ApplicationName
         {
             get
@@ -63,7 +64,7 @@ namespace Suro.Net.Configuration
                 this["port"] = value;
             }
         }
-        [ConfigurationProperty("poolSize", DefaultValue = 5, IsRequired = false)]
+        [ConfigurationProperty("poolSize", DefaultValue = Constants.DefaultPoolSize, IsRequired = false)]
         public int PoolSize
         {
             get

@@ -16,6 +16,11 @@ namespace Suro.Net.Client.Message
         private CompressionType _compressionType = CompressionType.None;
         private string _clientApp;
 
+        public MessageSetBuilder()
+            : this(Constants.DefaultApplicationName)
+        {
+
+        }
         public MessageSetBuilder (string clientApp)
         {
             _messages = new List<Message>();
