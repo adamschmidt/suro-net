@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Suro.Net")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(".NET client library for the Netflix Suro service (https://github.com/Netflix/suro)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Adam Schmidt")]
 [assembly: AssemblyProduct("Suro.Net")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]

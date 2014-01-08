@@ -2,6 +2,12 @@
 
 Netflix's Suro repository can be found here: https://github.com/netflix/suro
 
+## Package Installation
+
+This library has been published as a Nuget package
+
+    Install-Package Suro.Net
+
 ## Client Usage
 
 Integration with Suro is through TCP Keel-Alive connections, meaning that the client library must make use of pooled connections.
