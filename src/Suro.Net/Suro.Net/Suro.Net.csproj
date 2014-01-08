@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{91217531-23F7-43A0-98BD-83B0821EF23D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Suro.Net</RootNamespace>
+    <AssemblyName>Suro.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Thrift">
+      <HintPath>..\packages\Thrift.0.9.1.1\lib\net35\Thrift.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\Compression\CompressionType.cs" />
+    <Compile Include="Client\Compression\ICompression.cs" />
+    <Compile Include="Client\Compression\LzfCompression.cs" />
+    <Compile Include="Client\Compression\LzfCompressor.cs" />
+    <Compile Include="Client\Compression\NoCompression.cs" />
+    <Compile Include="Client\ISuroConnection.cs" />
+    <Compile Include="Client\Message\Crc32.cs" />
+    <Compile Include="Client\Message\Message.cs" />
+    <Compile Include="Client\Message\MessageSetBuilder.cs" />
+    <Compile Include="Client\ObjectPool.cs" />
+    <Compile Include="Client\PooledSuroConnection.cs" />
+    <Compile Include="Client\SuroConnection.cs" />
+    <Compile Include="Client\SuroConnectionPool.cs" />
+    <Compile Include="Configuration\SuroConfigurationSection.cs" />
+    <Compile Include="gen-csharp\Suro\Net\Client\Thrift\Result.cs" />
+    <Compile Include="gen-csharp\Suro\Net\Client\Thrift\ResultCode.cs" />
+    <Compile Include="gen-csharp\Suro\Net\Client\Thrift\ServiceStatus.cs" />
+    <Compile Include="gen-csharp\Suro\Net\Client\Thrift\SuroServer.cs" />
+    <Compile Include="gen-csharp\Suro\Net\Client\Thrift\SuroService.cs" />
+    <Compile Include="gen-csharp\Suro\Net\Client\Thrift\TMessageSet.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SuroException.cs" />
+    <Compile Include="Web\SuroContext.cs" />
+    <Compile Include="Web\SuroModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Client\packages.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>$(SolutionDir)\..\..\tools\thrift-0.9.1.exe --gen csharp -o $(ProjectDir) $(SolutionDir)\suro.idl</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
