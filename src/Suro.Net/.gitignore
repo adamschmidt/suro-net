@@ -41,9 +41,6 @@ local.properties
 *.user
 *.sln.docstates
 
-# Application Data
-[Aa]pp_[Dd]ata/
-
 # Build results
 
 [Dd]ebug/
