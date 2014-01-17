@@ -86,6 +86,7 @@
     <None Include="Client\packages.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>$(SolutionDir)\..\..\tools\thrift-0.9.1.exe --gen csharp -o $(ProjectDir) $(SolutionDir)\suro.idl</PreBuildEvent>
