@@ -73,7 +73,6 @@ namespace Suro.Net.Client
 				}
 
                 tcpClient.Client.IOControl(IOControlCode.KeepAliveValues, inValue, BitConverter.GetBytes(0));
-                
                 TSocket thriftSocket = new TSocket(tcpClient);
                 _transport = new TFramedTransport(thriftSocket);
             }
@@ -137,6 +136,46 @@ namespace Suro.Net.Client
 
         public Result Send(TMessageSet messageSet)
         {
+            try
+            {
+                return Client.process(messageSet);
+            }
+            catch (TTransportException te)
+            {
+                //thrown if client is disconnected from server. Attempt reconnect and send, if this fails, then throw
+                try
+                {
+                    return Retry(messageSet);
+                }
+                catch (TTransportException retry)
+                {
+                    throw new SuroException("Client has lost connectivity to the server", retry);
+                }
+            }
+        }
+
+        private Result Retry(TMessageSet messageSet)
+        {
+            try
+            {
+                _transport.Close();
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                _client.Dispose();
+            }
+            catch
+            {
+            }
+
+            _transport = null;
+            _client = null;
+
+            Connect();
             return Client.process(messageSet);
         }
     }

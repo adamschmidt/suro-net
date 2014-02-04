@@ -2,16 +2,14 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <!--licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl-->
     <projectUrl>https://github.com/adamschmidt/suro-net</projectUrl>
-    <!--iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>Fixes to re-establish lost client connection on message send.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>Netflix Suro</tags>
     <dependencies>
